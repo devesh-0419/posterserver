@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const Razorpay = require('razorpay');
+const authorizeRoles = require('../../Middleware/authorizeRoles');
 
 // Initialize Razorpay client with your API key and secret
 const razorpay = new Razorpay({
@@ -13,7 +14,7 @@ const razorpay = new Razorpay({
 router.use(bodyParser.json());
 
 // Route to create a new payment order
-router.post('/', async (req, res) => {
+router.post('/',authorizeRoles("seller","admin"),  async (req, res) => {
   try {
     const { amount, currency } = req.body;
     

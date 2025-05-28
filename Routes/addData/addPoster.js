@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Poster = require('../../Schema/posterSchema'); // Import your Poster model
 const User = require('../../Schema/userSchema'); // Import your User model
+const authorizeRoles = require('../../Middleware/authorizeRoles');
+
 
 // Create a new poster
-router.post('/', async (req, res) => {
+router.post('/',authorizeRoles("seller","admin"), async (req, res) => {
   try {
     const { title, description, price, imageUrl, username, category, condition } = req.body;
 

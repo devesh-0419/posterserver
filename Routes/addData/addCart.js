@@ -1,12 +1,13 @@
 // cartRoutes.js
 const express = require('express');
 const router = express.Router();
+const authorizeRoles = require('../../Middleware/authorizeRoles')
 const Cart = require('../../Schema/cartSchema'); 
 const User = require('../../Schema/userSchema');
 const Poster = require('../../Schema/posterSchema')// Update the path based on your file structure
 
 // POST route to add an item to the cart
-router.post('/addToCart', async (req, res) => {
+router.post('/addToCart',authorizeRoles("seller","admin"),  async (req, res) => {
   try {
     const { email, productId, quantity } = req.body;
     let user = await User.findOne({email})

@@ -2,10 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const getAllPosters = require('./Routes/getData/getAllPosters');
-const addUser= require('./Routes/addData/addUser');
+const addUser= require('./Routes/Auth/addUser');
+const login= require('./Routes/Auth/login');
 const addPoster= require('./Routes/addData/addPoster');
 const addOrder= require('./Routes/addData/addOrder');
 const app = express(); 
+const cookieParser = require("cookie-parser");
+
+
+app.use(cookieParser()); 
+
 require('dotenv').config();
 app.use(express.json());
 
@@ -26,5 +32,6 @@ mongoose.connect(process.env.DB_URI).then(
 
 app.use('/posters',getAllPosters);
 app.use('/register',addUser);
+app.use('/login',login);
 app.use('/addposter',addPoster);
 app.use('/create-order',addOrder);
