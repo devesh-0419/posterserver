@@ -7,7 +7,7 @@ const User = require('../../Schema/userSchema');
 const Poster = require('../../Schema/posterSchema')// Update the path based on your file structure
 
 // POST route to add an item to the cart
-router.post('/addToCart',authorizeRoles("seller","admin"),  async (req, res) => {
+router.post('/addToCart',  async (req, res) => {
   try {
     const { email, productId, quantity } = req.body;
     let user = await User.findOne({email})
