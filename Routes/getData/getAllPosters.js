@@ -5,7 +5,9 @@ const Posters = require('../../Schema/posterSchema');
 router.get("/search", async (req, res) => {
   try {
     const searchTerm = req.query.val;
-    
+    const page = parseInt(req.query.pageNumber)|1;
+    const perPage = 10;
+    const skip = (page-1)*perPage;
     // for (let key in req.query) {
     //   query[key] = { $regex: req.query[key], $options: "i" }; // case-insensitive partial match
     // }
@@ -18,7 +20,10 @@ router.get("/search", async (req, res) => {
     { description: { $regex: searchTerm, $options: "i" } },
     // add more keys if you want
   ],
-}).select("imageUrl title price seller description category _id");
+})
+.skip(skip)
+.limit(perPage)
+.select("imageUrl title price seller description category _id");
 
     return res.json(posters);
   } catch (error) {

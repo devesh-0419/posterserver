@@ -4,13 +4,15 @@ const router = express.Router();
 const Razorpay = require('razorpay');
 const authorizeRoles = require('../../Middleware/authorizeRoles');
 const Order = require('../../Schema/orderSchema');
-
+require('dotenv').config();
 
 // router.post('/',authorizeRoles("buyer","seller","admin"),  async (req, res) => {
  
 // });
 
 // Initialize Razorpay instance with your API keys
+// console.log(process.env.PORT);
+
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID, 
   key_secret: process.env.RAZORPAY_SECRET,

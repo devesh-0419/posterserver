@@ -58,6 +58,29 @@ const userSchema = new Schema({
       ref: 'Poster',
     },
   ],
+  sellerDetails: {
+    isSeller: {
+      type: Boolean,
+      default: false,
+    },
+     isVerified: {
+    type: String,
+    enum: ['pending', 'verified', 'rejected'],
+    default: 'pending',
+  },
+
+    storeName: String,
+    description: String,
+    contactNumber: String,
+    category: [String],
+    gstNumber: String,
+    upiId: String,
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,

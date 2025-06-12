@@ -1,11 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const addCart= require('./Routes/addData/addCart');
 const getAllPosters = require('./Routes/getData/getAllPosters');
+const getUserData = require('./Routes/getData/getUserData');
 const addUser= require('./Routes/Auth/addUser');
 const login= require('./Routes/Auth/login');
+const admin= require('./Routes/Admin/admin');
 const addPoster= require('./Routes/addData/addPoster');
 const addOrder= require('./Routes/addData/addOrder');
+const becomeSeller= require('./Routes/seller/becomeSeller');
 const app = express(); 
 const cookieParser = require("cookie-parser");
 
@@ -34,4 +38,8 @@ app.use('/posters',getAllPosters);
 app.use('/register',addUser);
 app.use('/login',login);
 app.use('/addposter',addPoster);
-app.use('/create-order',addOrder);
+app.use('/addorder',addOrder);
+app.use('/addtocart',addCart);
+app.use('/dashboard',admin);
+app.use('/becomeseller',becomeSeller);
+app.use('/userdata',getUserData);

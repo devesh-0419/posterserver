@@ -23,7 +23,7 @@ const newUser = new User({
       email,
       password,
       username,
-      role, // You can set the user's role in the request body
+      // role, // You can set the user's role in the request body
     });
 
     // Save the user to the database
