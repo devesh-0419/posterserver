@@ -6,7 +6,7 @@ router.get("/search", async (req, res) => {
   try {
     const searchTerm = req.query.val;
     const page = parseInt(req.query.pageNumber)|1;
-    const perPage = 10;
+    const perPage = 5;
     const skip = (page-1)*perPage;
     // for (let key in req.query) {
     //   query[key] = { $regex: req.query[key], $options: "i" }; // case-insensitive partial match

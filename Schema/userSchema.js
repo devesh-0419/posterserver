@@ -46,6 +46,16 @@ const userSchema = new Schema({
     enum: ['buyer', 'seller', 'admin'], // Define the possible roles here
     default: 'buyer', // Set a default role (e.g., 'buyer') if none is specified
   },
+    deliveryAddresses: [
+    {
+      street: { type: String, required: true },
+      city: { type: String, required: true },
+      state: { type: String },
+      postalCode: { type: String, required: true },
+      country: { type: String, required: true },
+      isDefault: { type: Boolean, default: false }
+    }
+  ],
   transactions: [
     {
       type: Schema.Types.ObjectId,
