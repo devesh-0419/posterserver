@@ -6,6 +6,8 @@ const getAllPosters = require('./Routes/getData/getAllPosters');
 const getUserData = require('./Routes/getData/getUserData');
 const addUser= require('./Routes/Auth/addUser');
 const login= require('./Routes/Auth/login');
+const logout= require('./Routes/Auth/logout');
+const signInByGoogle= require('./Routes/Auth/signInByGoogle');
 const admin= require('./Routes/Admin/admin');
 const addPoster= require('./Routes/addData/addPoster');
 const addOrder= require('./Routes/addData/addOrder');
@@ -19,8 +21,15 @@ app.use(cookieParser());
 require('dotenv').config();
 app.use(express.json());
 
-app.use(cors());
- 
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  })
+);
+
+// ✅ Allow OPTIONS method before your routes
+app.options('*', cors());
 
 mongoose.connect(process.env.DB_URI).then( 
     app.listen(process.env.PORT|| 8443 ,(err)=>{
@@ -37,9 +46,11 @@ mongoose.connect(process.env.DB_URI).then(
 app.use('/posters',getAllPosters);
 app.use('/register',addUser);
 app.use('/login',login);
+app.use('/logout',logout);
 app.use('/addposter',addPoster);
 app.use('/addorder',addOrder);
 app.use('/addtocart',addCart);
 app.use('/dashboard',admin);
 app.use('/becomeseller',becomeSeller);
 app.use('/userdata',getUserData);
+app.use('/auth/google',signInByGoogle);

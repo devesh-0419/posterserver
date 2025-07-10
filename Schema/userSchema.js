@@ -37,6 +37,9 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
+  googleUid : {
+    type:String
+  },
   profilePicture: {
     type: String, // Assuming the profile picture will be stored as a URL in AWS S3
     default: 'https://your-default-profile-picture-url.com/default.jpg', // Default picture URL

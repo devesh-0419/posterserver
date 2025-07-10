@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const express = require('express');
 const router = express.Router();
 const User = require('../../Schema/userSchema'); // Import your User model
+const authToken = require("../../Middleware/authToken");
 
 // Create a new user
 router.post('/', async (req, res) => {
@@ -28,7 +29,13 @@ const newUser = new User({
 
     // Save the user to the database
     await newUser.save();
+      
+        const payload = {
+            username: newUser.username,
+            role: newUser.role,
+        };
 
+      authToken(payload, res);
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
     console.error(error.message);

@@ -1,6 +1,6 @@
 // routes/auth.js
 const express = require("express");
-const jwt = require("jsonwebtoken");
+const authToken = require('../../Middleware/authToken')
 const bcrypt = require("bcrypt");
 const User = require("../../Schema/userSchema");
 const router = express();
@@ -29,15 +29,7 @@ router.post("/", async (req, res) => {
             role: user.role,
         };
 
-        const token = jwt.sign(payload, process.env.JWT_SECRET, {
-            expiresIn: "60m",
-        });
-
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "development", // true on prod
-            maxAge: 60 * 60 * 1000, // 60 minutes
-        });
+      authToken(payload, res);
 
         res.status(200).json({ message: "Login successful" });
     } catch (err) {
