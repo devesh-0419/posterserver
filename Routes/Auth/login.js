@@ -1,6 +1,6 @@
 // routes/auth.js
 const express = require("express");
-const authToken = require('../../Middleware/authToken')
+const authToken = require('../../middleware/authToken')
 const bcrypt = require("bcrypt");
 const User = require("../../Schema/userSchema");
 const router = express();
@@ -26,11 +26,11 @@ router.post("/", async (req, res) => {
 
         const payload = {
             username: user.username,
-            role: user.role,
+            role: user.role
         };
-
+     console.log('payload', payload);
       authToken(payload, res);
-
+    console.log(user.username," Login successful");
         res.status(200).json({ message: "Login successful" });
     } catch (err) {
         console.error(err);

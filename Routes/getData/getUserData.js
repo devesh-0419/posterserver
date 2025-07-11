@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../../Schema/userSchema"); 
-const authorizeRoles = require("../../Middleware/authorizeRoles");
+const authorizeRoles = require("../../middleware/authorizeRoles");
 
 router.get("/", authorizeRoles("buyer","seller","admin"), async (req, res) => {
   try {
+    // console.log('token', req.cookies)
     const user = await User.findOne({username:req.user.username}).select("-password -_id");
     if (!user) return res.status(404).json({ message: "User not found" });
 

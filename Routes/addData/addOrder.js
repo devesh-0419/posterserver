@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 // const bodyParser = require('body-parser');
 const Razorpay = require('razorpay');
-const authorizeRoles = require('../../Middleware/authorizeRoles');
+const authorizeRoles = require('../../middleware/authorizeRoles');
 const Order = require('../../Schema/orderSchema');
 require('dotenv').config();
 
