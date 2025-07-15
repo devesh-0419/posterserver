@@ -39,8 +39,8 @@ An Express.js backend application for managing posters, users, carts, and orders
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/devesh-0419/Postersell.git
-cd Postersell
+git clone https://github.com/devesh-0419/posterserver.git
+cd posterserver
 ```
 ### 2. Install Dependencies
 
