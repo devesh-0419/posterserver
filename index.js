@@ -3,8 +3,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const addCart= require('./Routes/addData/addCart');
 const getAllPosters = require('./Routes/getData/getAllPosters');
+const getOrders = require('./Routes/getData/getOrders');
 const getUserData = require('./Routes/getData/getUserData');
+const getAddress = require('./Routes/getData/getAddress');
+const getFavorites = require('./Routes/getData/getFavorites');
 const addUser= require('./Routes/Auth/addUser');
+const addUserAddress= require('./Routes/user/address');
+const addUserFavouritePosters= require('./Routes/user/favourites');
 const login= require('./Routes/Auth/login');
 const logout= require('./Routes/Auth/logout');
 const signInByGoogle= require('./Routes/Auth/signInByGoogle');
@@ -13,7 +18,7 @@ const addPoster= require('./Routes/addData/addPoster');
 const addOrder= require('./Routes/addData/addOrder');
 const becomeSeller= require('./Routes/seller/becomeSeller');
 const app = express(); 
-const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser"); 
 
 
 
@@ -28,29 +33,41 @@ app.use(
   })
 );
 
-// ✅ Allow OPTIONS method before your routes
+
 app.options('*', cors());
 
-mongoose.connect(process.env.DB_URI).then( 
-    app.listen(process.env.PORT|| 8443 ,(err)=>{
+const connectDB = async ()=>{
+  try {
+    await mongoose.connect(process.env.DB_URI,{
+  connectTimeoutMS: 10000,
+});
+
+ app.listen(process.env.PORT|| 8443 ,(err)=>{
         if(err) console.error(err)
         else
            console.log(`server is up and running on port ${process.env.PORT} or 8443 and db connected`);
-           
+            
     })
-    
-).catch(err=>console.error(err));
-          
+  } catch (error) {
+    console.error(error.message) 
+  }
+}
 
-
+connectDB();
 app.use('/posters',getAllPosters);
 app.use('/register',addUser);
+app.use('/user/address',addUserAddress);
+app.use('/user/favourites',addUserFavouritePosters);
 app.use('/login',login);
 app.use('/logout',logout);
 app.use('/addposter',addPoster);
 app.use('/addorder',addOrder);
 app.use('/addtocart',addCart);
+app.use('/orders',getOrders);
+app.use('/favourites',getFavorites);
+app.use('/addresses',getAddress);
 app.use('/dashboard',admin);
 app.use('/becomeseller',becomeSeller);
-app.use('/userdata',getUserData);
+app.use('/userdata',getUserData); 
 app.use('/auth/google',signInByGoogle);
+

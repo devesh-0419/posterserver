@@ -6,14 +6,13 @@ const alreadyLogIn = () => {
     
     
     try {
-      const token = req.cookies.token;
+      const {token} = req.cookies;
       // console.log('token', req.cookies)
       // For now I am not checking whether the token is valid or not 
       if (token) {
      return res.status(200).json({ message: "Already Logged IN.." });
       }
-      
-
+   
       next();
     } catch (err) {
       console.log(err);

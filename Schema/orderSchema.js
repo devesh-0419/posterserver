@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema(
       {
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Product",
+          ref: "Poster",
           required: true,
         },
         name: String,
@@ -32,14 +32,14 @@ const orderSchema = new mongoose.Schema(
       fullName: { type: String, required: true },
       address: { type: String, required: true },
       city: { type: String, required: true },
-      postalCode: { type: String, required: true },
+      zip: { type: String, required: true },
       country: { type: String, required: true },
     },
 
     paymentMethod: {
       type: String,
       required: true,
-      enum: ["Cash on Delivery", "Credit Card", "PayPal"],
+      enum: ["Cash on Delivery", "Credit Card", "PayPal", "Razorpay"],
     },
     razorpayOrderId:String,
 
@@ -57,6 +57,7 @@ const orderSchema = new mongoose.Schema(
 
     orderStatus: {
       type: String,
+      enum: ["Pending", "Shipped", "Delivered", "Cancelled"],
       default: "Pending", // other values: Shipped, Delivered, Cancelled
     },
 

@@ -12,7 +12,7 @@ router.post('/',authorizeRoles("seller","admin"), async (req, res) => {
     console.log(req.user);
     
     // Find the seller's ID by username
-    const seller = await User.findOne({ username:req.user.username });
+    const seller = await User.findOne({ $or: [{ username: req.user.username }, { email: req.user.username }] });
 
     if (!seller) {
       return res.status(400).json({ error: 'Seller not found' });

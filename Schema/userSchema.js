@@ -51,10 +51,13 @@ const userSchema = new Schema({
   },
     deliveryAddresses: [
     {
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
+      phone: { type: Number, required: true },
       street: { type: String, required: true },
-      city: { type: String, required: true },
-      state: { type: String },
-      postalCode: { type: String, required: true },
+      city: { type: String},
+      state: { type: String, required: true},
+      zip: { type: String, required: true },
       country: { type: String, required: true },
       isDefault: { type: Boolean, default: false }
     }
@@ -103,7 +106,10 @@ const userSchema = new Schema({
 // Hash the password before saving the user
 userSchema.pre('save', async function (next) {
   try {
+    if (!this.isModified('password')) return next();
+
     const salt = await bcrypt.genSalt(10);
+    console.log('this.password', this.password);
     const hashedPassword = await bcrypt.hash(this.password, salt);
     this.password = hashedPassword;
     next();

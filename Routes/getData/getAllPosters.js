@@ -32,6 +32,49 @@ router.get("/search", async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const page = parseInt(req.query.pageNumber) || 1;
+    const perPage = 10;
+    const skip = (page - 1) * perPage;
+
+    // Get sortBy from query
+    const sortOption = req.query.sortBy;
+
+    // Default sort: newest first (optional)
+    let sort = {};
+
+    // Map the sortBy value to MongoDB sort object
+    switch (sortOption) {
+      case "name_asc":
+        sort = { title: 1 };
+        break;
+      case "name_desc":
+        sort = { title: -1 };
+        break;
+      case "price_asc":
+        sort = { price: 1 };
+        break;
+      case "price_desc":
+        sort = { price: -1 };
+        break;
+      default:
+        sort = {}; // No sorting or default sort
+    }
+
+    const posters = await Posters.find({})
+      .sort(sort)
+      .skip(skip)
+      .limit(perPage)
+      .select("imageUrl title price seller category _id");
+
+    return res.json(posters);
+  } catch (error) {
+    return res.status(500).json({ unsuccessfull: true, error: error.message });
+  }
+});
+
+
 router.get('/', async (req,res)=>{
   try {
     const page = parseInt(req.query.pageNumber)|1;

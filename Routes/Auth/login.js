@@ -3,9 +3,10 @@ const express = require("express");
 const authToken = require('../../middleware/authToken')
 const bcrypt = require("bcrypt");
 const User = require("../../Schema/userSchema");
+const alreadyLogIn = require("../../middleware/alreadyLogIn");
 const router = express();
 
-router.post("/", async (req, res) => {
+router.post("/",alreadyLogIn(), async (req, res) => {
     const { identifier, password } = req.body; // identifier = email or username
 
     try {
@@ -14,9 +15,9 @@ router.post("/", async (req, res) => {
         });
 
         if (!user) {
-            return res.status(400).json({ message: "Invalid credentials" });
+            return res.status(400).json({ message: "User Doesn't Exist" });
         }
-//   console.log(user.password);
+ console.log(user);
   
         const isMatch = await bcrypt.compare(password, user.password);
         // (password==user.password)?true:false;
