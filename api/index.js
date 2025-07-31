@@ -44,7 +44,7 @@ const connectDB = async ()=>{
 });
 
 module.exports = serverless(app);
-
+console.log('Poster land is running..');
 //  app.listen(process.env.PORT|| 8443 ,(err)=>{
 //         if(err) console.error(err)
 //         else
