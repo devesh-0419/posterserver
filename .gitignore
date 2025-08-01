@@ -4,4 +4,4 @@
 config/
 config/serviceAccountKey.json
 secrets/
-*.json
+serviceAccountKey.json
