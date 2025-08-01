@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+// const authorizeRoles = require('../middleware/authorizeRoles');
 const cors = require('cors');
 const home = require('../Routes/home/home');
 const addCart= require('../Routes/addData/addCart');
@@ -46,6 +47,7 @@ const connectDB = async ()=>{
 
 module.exports = serverless(app);
 console.log('Poster land is running..');
+
 //  app.listen(process.env.PORT|| 8443 ,(err)=>{
 //         if(err) console.error(err)
 //         else
