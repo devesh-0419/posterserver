@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const home = require('../Routes/home/home');
 const addCart= require('../Routes/addData/addCart');
 const getAllPosters = require('../Routes/getData/getAllPosters');
 const getOrders = require('../Routes/getData/getOrders');
@@ -57,6 +58,7 @@ console.log('Poster land is running..');
 }
 
 connectDB();
+app.use('/',home);
 app.use('/posters',getAllPosters);
 app.use('/register',addUser);
 app.use('/user/address',addUserAddress);
