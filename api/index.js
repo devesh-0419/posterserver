@@ -13,7 +13,7 @@ const addUserAddress= require('../Routes/user/address');
 const addUserFavouritePosters= require('../Routes/user/favourites');
 const login= require('../Routes/Auth/login');
 const logout= require('../Routes/Auth/logout');
-const signInByGoogle= require('../Routes/Auth/signInByGoogle');
+// const signInByGoogle= require('../Routes/Auth/signInByGoogle');
 const admin= require('../Routes/Admin/admin');
 const addPoster= require('../Routes/addData/addPoster');
 const addOrder= require('../Routes/addData/addOrder');
@@ -75,6 +75,6 @@ app.use('/addresses',getAddress);
 app.use('/dashboard',admin);
 app.use('/becomeseller',becomeSeller);
 app.use('/userdata',getUserData); 
-app.use('/auth/google',signInByGoogle);
+// app.use('/auth/google',signInByGoogle);
 
 
