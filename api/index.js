@@ -19,7 +19,7 @@ const addPoster= require('../Routes/addData/addPoster');
 const addOrder= require('../Routes/addData/addOrder');
 const becomeSeller= require('../Routes/seller/becomeSeller');
 const app = express(); 
-const serverless = require('serverless-http'); 
+// const serverless = require('serverless-http'); 
 const cookieParser = require("cookie-parser"); 
 
 
@@ -50,14 +50,14 @@ const connectDB = async ()=>{
   connectTimeoutMS: 10000,
 });
 
-console.log('Poster land is running..');
+// console.log('Poster land is running..');
 
-//  app.listen(process.env.PORT|| 8443 ,(err)=>{
-  //         if(err) console.error(err)
-  //         else
-//            console.log(`server is up and running on port ${process.env.PORT} or 8443 and db connected`);
+ app.listen(process.env.PORT|| 8443 ,(err)=>{
+          if(err) console.error(err)
+          else
+           console.log(`server is up and running on port ${process.env.PORT} or 8443 and db connected`);
   
-  //     })
+      })
 } catch (error) {
   console.error(error.message) 
 }
@@ -84,4 +84,4 @@ app.use('/userdata',getUserData);
 
 
 
-module.exports = serverless(app);
+// module.exports = serverless(app);
