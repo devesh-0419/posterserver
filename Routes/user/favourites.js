@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../Schema/userSchema');
 const Poster = require('../../Schema/posterSchema');
-const authorizeRoles = require("../../Middleware/authorizeRoles");
+const authorizeRoles = require("../../middleware/authorizeRoles");
 
 // ✅ POST (Add) a poster to favourites
 router.post('/', authorizeRoles("buyer", "seller", "admin"), async (req, res) => {

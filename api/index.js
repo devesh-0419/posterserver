@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const home = require('../Routes/home/home');
+const home = require('../Routes/Home/home');
 const addCart= require('../Routes/addData/addCart');
 const getAllPosters = require('../Routes/getData/getAllPosters');
 const getOrders = require('../Routes/getData/getOrders');

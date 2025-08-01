@@ -1,9 +1,9 @@
 // routes/auth.js
 const express = require("express");
-const authToken = require('../../Middleware/authToken')
+const authToken = require('../../middleware/authToken')
 const bcrypt = require("bcrypt");
 const User = require("../../Schema/userSchema");
-const alreadyLogIn = require("../../Middleware/alreadyLogIn");
+const alreadyLogIn = require("../../middleware/alreadyLogIn");
 const router = express();
 
 router.post("/",alreadyLogIn(), async (req, res) => {
