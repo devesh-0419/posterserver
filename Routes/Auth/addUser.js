@@ -7,7 +7,7 @@ const authToken = require("../../middleware/authToken");
 // Create a new user
 router.post('/', async (req, res) => {
   try {
-    const { displayName, email, password, username, role } = req.body; // Assuming you pass these values in the request body
+    const { displayName, email, password, username, role} = req.body; // Assuming you pass these values in the request body
 
 // Inside your registration route:
 // Check if a user with the same email or username already exists
