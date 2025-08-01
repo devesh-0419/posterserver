@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const express = require('express');
 const router = express.Router();
 const User = require('../../Schema/userSchema'); // Import your User model
-const authToken = require("../../middleware/authToken");
+const authToken = require("../../Middleware/authToken");
 
 // Create a new user
 router.post('/', async (req, res) => {

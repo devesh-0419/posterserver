@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Order = require("../../Schema/orderSchema"); 
-const authorizeRoles = require("../../middleware/authorizeRoles");
+const authorizeRoles = require("../../Middleware/authorizeRoles");
 const User = require("../../Schema/userSchema"); 
 router.get("/", authorizeRoles("buyer", "admin"), async (req, res) => {
   try {

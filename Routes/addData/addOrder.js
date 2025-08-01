@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Razorpay = require('razorpay');
 const crypto = require("crypto");
-const authorizeRoles = require('../../middleware/authorizeRoles');
+const authorizeRoles = require('../../Middleware/authorizeRoles');
 const Order = require('../../Schema/orderSchema');
 const User = require('../../Schema/userSchema');
 

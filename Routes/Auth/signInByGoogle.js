@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const admin = require('../../firebase/admin');
 const User = require('../../Schema/userSchema'); // your DB model
-const authToken = require('../../middleware/authToken')
+const authToken = require('../../Middleware/authToken')
 router.post('/', async (req, res) => {
   const { token } = req.body;
 
