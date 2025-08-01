@@ -1,7 +1,6 @@
 // cartRoutes.js
 const express = require('express');
 const router = express.Router();
-// const authorizeRoles = require('../../middleware/authorizeRoles')
 const Cart = require('../../Schema/cartSchema'); 
 const User = require('../../Schema/userSchema');
 const Poster = require('../../Schema/posterSchema')// Update the path based on your file structure

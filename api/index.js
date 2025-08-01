@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const authorizeRoles = require('../middleware/authorizeRoles');
 const cors = require('cors');
 const home = require('../Routes/home/home');
 const addCart= require('../Routes/addData/addCart');
