@@ -44,18 +44,17 @@ const connectDB = async ()=>{
   connectTimeoutMS: 10000,
 });
 
-module.exports = serverless(app);
 console.log('Poster land is running..');
 
 //  app.listen(process.env.PORT|| 8443 ,(err)=>{
-//         if(err) console.error(err)
-//         else
+  //         if(err) console.error(err)
+  //         else
 //            console.log(`server is up and running on port ${process.env.PORT} or 8443 and db connected`);
-            
-//     })
-  } catch (error) {
-    console.error(error.message) 
-  }
+  
+  //     })
+} catch (error) {
+  console.error(error.message) 
+}
 }
 
 connectDB();
@@ -78,3 +77,5 @@ app.use('/userdata',getUserData);
 // app.use('/auth/google',signInByGoogle);
 
 
+
+module.exports = serverless(app);
