@@ -64,7 +64,7 @@ console.log('Poster land is running..');
 }
 
 connectDB();
-app.use('/',home);
+app.use('/home',home);
 app.use('/posters',getAllPosters);
 app.use('/register',addUser);
 app.use('/user/address',addUserAddress);
