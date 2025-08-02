@@ -28,12 +28,31 @@ require('dotenv').config();
 app.use(express.json());
 app.use(cookieParser()); 
 
-app.use(
-  cors({
-    origin: 'http://localhost:5173',
-    credentials: true,
-  })
-);
+const allowedOrigins = [
+  process.env.FRONTEND_URL1 || 'http://localhost:3000',
+  process.env.FRONTEND_URL2 || 'https://postersell.vercel.app/',
+  process.env.FRONTEND_URL3 || 'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app/'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
+
+
+// app.use(
+//   cors({
+//     origin: 'http://localhost:5173',
+//     credentials: true,
+//   })
+// );
 
 // app.use(cors({
 //   origin: "*", // Allow all origins (use specific domain in production)
