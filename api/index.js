@@ -28,22 +28,22 @@ require('dotenv').config();
 app.use(express.json());
 app.use(cookieParser()); 
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL1 || 'http://localhost:3000',
-  process.env.FRONTEND_URL2 || 'https://postersell.vercel.app/',
-  process.env.FRONTEND_URL3 || 'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app/'
-];
+// const allowedOrigins = [
+//   process.env.FRONTEND_URL1 || 'http://localhost:3000',
+//   process.env.FRONTEND_URL2 || 'https://postersell.vercel.app/',
+//   process.env.FRONTEND_URL3 || 'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app/'
+// ];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true
+// }));
 
 
 
@@ -54,11 +54,11 @@ app.use(cors({
 //   })
 // );
 
-// app.use(cors({
-//   origin: "*", // Allow all origins (use specific domain in production)
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   allowedHeaders: ["Content-Type", "Authorization"]
-// }));
+app.use(cors({
+  origin: "*", // Allow all origins (use specific domain in production)
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 //my middleware
 
 app.options('*', cors());
