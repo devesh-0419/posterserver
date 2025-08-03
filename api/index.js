@@ -21,12 +21,7 @@ const becomeSeller= require('../Routes/seller/becomeSeller');
 const app = express(); 
 // const serverless = require('serverless-http'); 
 const cookieParser = require("cookie-parser"); 
-
-
-
 require('dotenv').config();
-app.use(express.json());
-app.use(cookieParser()); 
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -50,6 +45,10 @@ app.use(cors({
     'Origin'
   ],
 }));
+
+
+app.use(cookieParser()); 
+app.use(express.json());
 
 
 
