@@ -70,18 +70,6 @@ const connectDB = async ()=>{
 
 // console.log('Poster land is running..');
 
- app.listen(process.env.PORT|| 8443 ,(err)=>{
-          if(err) console.error(err)
-          else
-           console.log(`server is up and running on port ${process.env.PORT} or 8443 and db connected`);
-  
-      })
-} catch (error) {
-  console.error(error.message) 
-}
-}
-
-connectDB();
 app.use('/home',home);
 app.use('/posters',getAllPosters);
 app.use('/register',addUser);
@@ -103,3 +91,16 @@ app.use('/userdata',getUserData);
 
 
 // module.exports = serverless(app);
+app.options('*', cors());
+app.listen(process.env.PORT|| 8443 ,(err)=>{
+         if(err) console.error(err)
+         else
+          console.log(`server is up and running on port ${process.env.PORT} or 8443 and db connected`);
+ 
+     })
+} catch (error) {
+ console.error(error.message) 
+}
+}
+
+connectDB();
