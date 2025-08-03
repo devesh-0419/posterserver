@@ -31,8 +31,8 @@ app.use(cookieParser());
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://vercel.app',
-      'https://projects.vercel.app'
+      'https://postersell.vercel.app/',
+      'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app/'
     ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
