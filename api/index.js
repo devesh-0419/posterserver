@@ -23,47 +23,39 @@ const app = express();
 const cookieParser = require("cookie-parser"); 
 require('dotenv').config();
 
-const allowedOrigins = ['https://postersell.vercel.app', 'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app'];
+// const allowedOrigins = ['https://postersell.vercel.app', 'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app'];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
+// app.use((req, res, next) => {
+//   const origin = req.headers.origin;
+//   if (allowedOrigins.includes(origin)) {
+//     res.header('Access-Control-Allow-Origin', origin);
+//   }
 
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.header('Access-Control-Allow-Credentials', 'true');
 
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(204); // Preflight success
-  }
+//   if (req.method === 'OPTIONS') {
+//     return res.sendStatus(204); // Preflight success
+//   }
 
-  next();
-});
+//   next();
+// });
 
 
 app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'https://postersell.vercel.app/',
-      'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app/'
-    ];  
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }  
-  },  
+  origin:'https://postersell.vercel.app/',
+     
+  
   // methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
-  credentials: true,
+  // credentials: true,
   // allowedHeaders: ['Content-Type','Authorization','X-Requested-With'],
   // exposedHeaders: ['X-Custom-Auth'],
   // preflightContinue: false 
 }));  
 
 
-app.options('*', cors());
+// app.options('*', cors());
 app.use(cookieParser()); 
 app.use(express.json());
 
