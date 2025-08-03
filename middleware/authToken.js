@@ -12,7 +12,7 @@ const authToken = (payload,res)=>{
             secure: process.env.NODE_ENV !== "development", // true on prod
             maxAge: 60 * 60 * 1000, // 60 minutes
             sameSite: 'None', // or 'Lax'/'Strict' as needed
-            domain: process.env.NODE_ENV === "development" ? 'localhost' : 'posterserver.onrender.com', // or your domain
+            // domain: process.env.NODE_ENV === "development" ? 'localhost' : 'posterserver.onrender.com', // or your domain
             path: '/',
         });
 }
