@@ -44,7 +44,7 @@ require('dotenv').config();
 
 
 app.use(cors({
-  origin:'https://postersell.vercel.app/',
+  origin:'https://postersell.vercel.app',
      
   
   // methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
