@@ -23,26 +23,6 @@ const app = express();
 const cookieParser = require("cookie-parser"); 
 require('dotenv').config();
 
-app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'https://postersell.vercel.app/',
-      'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app/'
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  // methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
-  credentials: true,
-  // allowedHeaders: ['Content-Type','Authorization','X-Requested-With'],
-  // exposedHeaders: ['X-Custom-Auth'],
-  // preflightContinue: false 
-}));
-
-
 const allowedOrigins = ['https://postersell.vercel.app', 'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app'];
 
 app.use((req, res, next) => {
@@ -61,6 +41,26 @@ app.use((req, res, next) => {
 
   next();
 });
+
+
+app.use(cors({
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'https://postersell.vercel.app/',
+      'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app/'
+    ];  
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }  
+  },  
+  // methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
+  credentials: true,
+  // allowedHeaders: ['Content-Type','Authorization','X-Requested-With'],
+  // exposedHeaders: ['X-Custom-Auth'],
+  // preflightContinue: false 
+}));  
 
 
 app.options('*', cors());
