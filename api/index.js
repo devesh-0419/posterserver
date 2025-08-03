@@ -35,14 +35,35 @@ app.use(cors({
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  // methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
   credentials: true,
-  allowedHeaders: ['Content-Type','Authorization','X-Requested-With'],
-  exposedHeaders: ['X-Custom-Auth'],
-  preflightContinue: false 
+  // allowedHeaders: ['Content-Type','Authorization','X-Requested-With'],
+  // exposedHeaders: ['X-Custom-Auth'],
+  // preflightContinue: false 
 }));
 
 
+const allowedOrigins = ['https://postersell.vercel.app', 'https://postersell-o99i0fd0h-devesh0419s-projects.vercel.app'];
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204); // Preflight success
+  }
+
+  next();
+});
+
+
+app.options('*', cors());
 app.use(cookieParser()); 
 app.use(express.json());
 
@@ -60,15 +81,27 @@ app.use(express.json());
 //   methods: ["GET", "POST", "PUT", "DELETE"],
 //   allowedHeaders: ["Content-Type", "Authorization"]
 // }));
-//my middleware
-
-app.options('*', cors());
-
 const connectDB = async ()=>{
   try {
     await mongoose.connect(process.env.DB_URI,{
   connectTimeoutMS: 10000,
 });
+
+// module.exports = serverless(app);
+app.listen(process.env.PORT|| 8443 ,(err)=>{
+  if(err) console.error(err)
+    else
+  console.log(`server is up and running on port ${process.env.PORT} or 8443 and db connected`);
+
+})
+} catch (error) {
+  console.error(error.message) 
+}
+}
+//my middleware
+
+connectDB();
+
 
 // console.log('Poster land is running..');
 
@@ -91,18 +124,3 @@ app.use('/userdata',getUserData);
 // app.use('/auth/google',signInByGoogle);
 
 
-
-// module.exports = serverless(app);
-app.options('*', cors());
-app.listen(process.env.PORT|| 8443 ,(err)=>{
-         if(err) console.error(err)
-         else
-          console.log(`server is up and running on port ${process.env.PORT} or 8443 and db connected`);
- 
-     })
-} catch (error) {
- console.error(error.message) 
-}
-}
-
-connectDB();
